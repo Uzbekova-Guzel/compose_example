@@ -173,7 +173,8 @@ internal fun ForYouScreen(
             horizontalArrangement = Arrangement.spacedBy(16.dp),
             verticalItemSpacing = 24.dp,
             modifier = Modifier
-                .testTag("forYou:feed"),
+                .testTag("forYou:feed")
+                .lazyListSize((feedState as? NewsFeedUiState.Success)?.feed?.size ?: 0),
             state = state,
         ) {
             onboarding(

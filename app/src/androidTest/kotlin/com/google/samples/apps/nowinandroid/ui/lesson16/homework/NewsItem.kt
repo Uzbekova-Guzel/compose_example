@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.samples.apps.nowinandroid.ui.lesson16
+package com.google.samples.apps.nowinandroid.ui.lesson16.homework
 
 import androidx.compose.ui.semantics.SemanticsNode
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
@@ -22,21 +22,24 @@ import com.google.samples.apps.nowinandroid.core.designsystem.component.Tags
 import io.github.kakaocup.compose.node.element.KNode
 import io.github.kakaocup.compose.node.element.lazylist.KLazyListItemNode
 
-class TopicsItem(
+class NewsItem(
     semanticNode: SemanticsNode,
-    semanticsProvider: SemanticsNodeInteractionsProvider? = null
-) : KLazyListItemNode<TopicsItem>(semanticNode, semanticsProvider) {
+    semanticsProvider: SemanticsNodeInteractionsProvider? = null,
+) : KLazyListItemNode<NewsItem>(semanticNode, semanticsProvider) {
 
-    val image = child<KNode>{
-        hasTestTag(Tags.IMAGE)
+    val newsImage = child<KNode> {
+        hasTestTag(Tags.NEWS_IMAGE)
     }
-    val title = child<KNode>{
-        hasTestTag(Tags.TITLE)
+    val newsTitle = child<KNode> {
+        hasTestTag(Tags.NEWS_TITLE)
     }
-    val plusIcon = child<KNode>{
-        hasTestTag(Tags.PLUS_ICON)
+    val newsDate = child<KNode> {
+        hasTestTag(Tags.NEWS_DATE)
     }
-    val checkedIcon = child<KNode>{
-        hasTestTag(Tags.CHECKED_ICON)
+    val newsDescText = child<KNode> {
+        hasTestTag(Tags.NEWS_DESC_TEXT)
+    }
+    val topicsRow = child<KNode> {
+        hasTestTag(Tags.TOPIC_TAG_ROW)
     }
 }

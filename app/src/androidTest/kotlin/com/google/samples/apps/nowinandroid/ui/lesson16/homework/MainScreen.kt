@@ -14,18 +14,28 @@
  * limitations under the License.
  */
 
-package com.google.samples.apps.nowinandroid.ui.lesson16
+package com.google.samples.apps.nowinandroid.ui.lesson16.homework
 
+import com.google.samples.apps.nowinandroid.ui.lesson16.createLazyList
 import io.github.kakaocup.compose.node.element.ComposeScreen
 
 class MainScreen : ComposeScreen<MainScreen>() {
 
-    val items = createLazyList(
+    val topicsList = createLazyList(
         viewBuilderAction = {
-            hasTestTag("lazy-list")
+            hasTestTag("forYou:topicSelection")
         },
         itemTypeBuilder = {
             itemType(::TopicsItem)
         },
+    )
+
+    val newsList = createLazyList(
+        viewBuilderAction = {
+            hasTestTag("forYou:feed")
+        },
+        itemTypeBuilder = {
+            itemType (::NewsItem)
+        }
     )
 }

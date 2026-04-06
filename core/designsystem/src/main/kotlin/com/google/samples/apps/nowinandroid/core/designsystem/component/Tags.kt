@@ -18,8 +18,18 @@ package com.google.samples.apps.nowinandroid.core.designsystem.component
 
 object Tags {
 
-    const val IMAGE = "image"
+    const val IMAGE = "topicImage"
     const val PLUS_ICON = "plusIcon"
     const val CHECKED_ICON = "checkedIcon"
-    const val TITLE = "title"
+    const val TITLE = "topicTitle"
+
+
+    const val NEWS_IMAGE = "newsImage"
+    const val NEWS_TITLE = "newsTitle"
+    const val NEWS_DATE = "newsDate"
+    const val NEWS_DESC_TEXT = "newsDescText"
+    const val TOPIC_TAG = "topicTag"
+    const val TOPIC_TAG_ROW = "topicTagRow"
+
+
 }
