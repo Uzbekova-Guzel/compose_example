@@ -19,7 +19,7 @@ package com.google.samples.apps.nowinandroid.ui.lesson16.homework
 import com.google.samples.apps.nowinandroid.ui.lesson16.createLazyList
 import io.github.kakaocup.compose.node.element.ComposeScreen
 
-class MainScreen : ComposeScreen<MainScreen>() {
+object MainScreen : ComposeScreen<MainScreen>() {
 
     val topicsList = createLazyList(
         viewBuilderAction = {
