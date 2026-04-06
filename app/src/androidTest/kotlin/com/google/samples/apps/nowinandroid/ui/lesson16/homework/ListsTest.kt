@@ -58,28 +58,3 @@ class ListsTest : ConfiguredTest() {
         }
     }
 }
-
-//tep("Проверка эементов в горизоонтальном списке") {
-//    LazyHomeScreen.topicList.childAt<TopicsItem>(0){
-//        image.assertIsDisplayed()
-//        title.assertIsDisplayed()
-//        iconPlus.assertIsDisplayed()
-//    }
-//    LazyHomeScreen.topicList.childAt<TopicsItem>(1){
-//        assertIsDisplayed()
-//    }
-//    LazyHomeScreen.topicList.childAt<TopicsItem>(2){
-//        assertIsDisplayed()
-//    }
-//}
-//step("Клик по топику Compose") {
-//    LazyHomeScreen.topicList.childAt<TopicsItem>(2){
-//        iconPlus.performClick()
-//        checkedIcon.assertIsDisplayed()
-//    }
-//}
-//step("Проверяем что новости подтянулись") {
-//    LazyHomeScreen.newsList.childAt<NewsItems>(0){
-//        assertIsDisplayed()
-//    }
-//}
