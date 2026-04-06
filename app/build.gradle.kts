@@ -145,6 +145,11 @@ dependencies {
     }
     implementation("androidx.drawerlayout:drawerlayout:1.2.0")
     androidTestImplementation("io.github.kakaocup:compose:1.1.0")
+
+//    androidTestImplementation("com.kaspersky.android-components:kaspresso-allure-support:1.6.0") {
+//        exclude(group = "org.jetbrains.kotlin")
+//        exclude(module = "kotlin-stdlib")
+//    }
 }
 
 baselineProfile {

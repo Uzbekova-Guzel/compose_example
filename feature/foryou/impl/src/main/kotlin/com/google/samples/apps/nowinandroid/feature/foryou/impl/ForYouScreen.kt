@@ -50,6 +50,7 @@ import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.lazy.staggeredgrid.LazyStaggeredGridScope
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
@@ -89,6 +90,9 @@ import com.google.samples.apps.nowinandroid.core.designsystem.component.DynamicA
 import com.google.samples.apps.nowinandroid.core.designsystem.component.NiaButton
 import com.google.samples.apps.nowinandroid.core.designsystem.component.NiaIconToggleButton
 import com.google.samples.apps.nowinandroid.core.designsystem.component.NiaOverlayLoadingWheel
+import com.google.samples.apps.nowinandroid.core.designsystem.component.Tags
+import com.google.samples.apps.nowinandroid.core.designsystem.component.lazyListItemPosition
+import com.google.samples.apps.nowinandroid.core.designsystem.component.lazyListSize
 import com.google.samples.apps.nowinandroid.core.designsystem.component.scrollbar.DecorativeScrollbar
 import com.google.samples.apps.nowinandroid.core.designsystem.component.scrollbar.DraggableScrollbar
 import com.google.samples.apps.nowinandroid.core.designsystem.component.scrollbar.rememberDraggableScroller
@@ -352,18 +356,20 @@ private fun TopicSelection(
                 // The maximum of these two bounds is therefore a valid upper bound in all cases.
                 .heightIn(max = max(240.dp, with(LocalDensity.current) { 240.sp.toDp() }))
                 .fillMaxWidth()
-                .testTag(topicSelectionTestTag),
+                .testTag(topicSelectionTestTag)
+                .lazyListSize(onboardingUiState.topics.size),
         ) {
-            items(
+            itemsIndexed(
                 items = onboardingUiState.topics,
-                key = { it.topic.id },
-            ) {
+                key = { _, item -> item.topic.id },
+            ) { index, item ->
                 SingleTopicButton(
-                    name = it.topic.name,
-                    topicId = it.topic.id,
-                    imageUrl = it.topic.imageUrl,
-                    isSelected = it.isFollowed,
+                    name = item.topic.name,
+                    topicId = item.topic.id,
+                    imageUrl = item.topic.imageUrl,
+                    isSelected = item.isFollowed,
                     onClick = onTopicCheckedChanged,
+                    modifier = Modifier.lazyListItemPosition(index)
                 )
             }
         }
@@ -384,10 +390,11 @@ private fun SingleTopicButton(
     topicId: String,
     imageUrl: String,
     isSelected: Boolean,
+    modifier: Modifier = Modifier,
     onClick: (String, Boolean) -> Unit,
 ) {
     Surface(
-        modifier = Modifier
+        modifier = modifier
             .width(312.dp)
             .heightIn(min = 56.dp),
         shape = RoundedCornerShape(corner = CornerSize(8.dp)),
@@ -409,7 +416,8 @@ private fun SingleTopicButton(
                 style = MaterialTheme.typography.titleSmall,
                 modifier = Modifier
                     .padding(horizontal = 12.dp)
-                    .weight(1f),
+                    .weight(1f)
+                    .testTag(Tags.TITLE),
                 color = MaterialTheme.colorScheme.onSurface,
             )
             NiaIconToggleButton(
@@ -419,12 +427,14 @@ private fun SingleTopicButton(
                     Icon(
                         imageVector = NiaIcons.Add,
                         contentDescription = name,
+                        modifier = Modifier.testTag(Tags.PLUS_ICON)
                     )
                 },
                 checkedIcon = {
                     Icon(
                         imageVector = NiaIcons.Check,
                         contentDescription = name,
+                        modifier = Modifier.testTag(Tags.CHECKED_ICON)
                     )
                 },
             )
